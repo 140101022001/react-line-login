@@ -23,7 +23,7 @@ const Home = () => {
                     navigate('/line-login-page')
                 } else {
                     const profile = await liff.getProfile();
-                    const email = await liff.permission.query('email')
+                    const email = liff.getDecodedIDToken();
                     console.log(profile);
                     console.log(email);
                     
