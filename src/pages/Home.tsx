@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import liff from "@line/liff";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-    const [profile,setProfile] = useState({});
+    // const [profile,setProfile] = useState({});
     const navigate = useNavigate();
 
     const initLine = () => {
