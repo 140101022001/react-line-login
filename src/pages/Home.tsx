@@ -2,9 +2,16 @@ import { useEffect, useState } from "react"
 import liff from "@line/liff";
 import { useNavigate } from "react-router-dom";
 
-const initialProfile = {
-    displayName: '',
-    userId: ''
+type Profile = {
+    email?: string | null,
+    name?: string | null,
+    sub?: string | null
+}
+
+const initialProfile: Profile = {
+    email: '',
+    name: '',
+    sub: ''
 }
 
 const Home = () => {
@@ -22,13 +29,11 @@ const Home = () => {
                 if(!liff.isLoggedIn()) {
                     navigate('/line-login-page')
                 } else {
-                    const profile = await liff.getProfile();
-                    const email = liff.getDecodedIDToken();
+                    const profile = liff.getDecodedIDToken();
                     console.log(profile);
-                    console.log(email);
-                    
-                    
-                    setProfile(profile);
+                    if (profile && profile.email) {
+                        setProfile(profile);
+                    }
                 }
             })
         }
@@ -39,8 +44,9 @@ const Home = () => {
     return (
         <div className="container">
             <div className="box">
-                <span>Name: { profile.displayName }</span><br />
-                <span>ID: { profile.userId }</span><br />
+                <span>ID: { profile.sub }</span><br />
+                <span>Name: { profile.name }</span><br />
+                <span>Email: { profile.email }</span><br />
                 <button className="" onClick={logout}>Logout</button>
             </div>
         </div>
