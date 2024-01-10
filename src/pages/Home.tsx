@@ -22,7 +22,7 @@ const Home = () => {
                 if(!liff.isLoggedIn()) {
                     navigate('/line-login-page')
                 } else {
-                    const profile = liff.getProfilePlus();
+                    const profile = await liff.getProfile();
                     console.log(profile);
                     
                     setProfile(initialProfile);
