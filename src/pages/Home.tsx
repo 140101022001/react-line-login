@@ -23,9 +23,12 @@ const Home = () => {
                     navigate('/line-login-page')
                 } else {
                     const profile = await liff.getProfile();
+                    const newPro = liff.getProfilePlus()
                     console.log(profile);
+                    console.log(newPro);
                     
-                    setProfile(initialProfile);
+                    
+                    setProfile(profile);
                 }
             })
         }
