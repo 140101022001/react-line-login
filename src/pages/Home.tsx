@@ -23,9 +23,9 @@ const Home = () => {
                     navigate('/line-login-page')
                 } else {
                     const profile = await liff.getProfile();
-                    const newPro = liff.getProfilePlus()
+                    const email = liff.permission.query('email')
                     console.log(profile);
-                    console.log(newPro);
+                    console.log(email);
                     
                     
                     setProfile(profile);
