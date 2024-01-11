@@ -15,7 +15,7 @@ const initialProfile: Profile = {
 }
 
 const Home = () => {
-    const [profile,setProfile] = useState(initialProfile);
+    const [profile, setProfile] = useState(initialProfile);
     const navigate = useNavigate();
 
     const logout = () => {
@@ -25,28 +25,25 @@ const Home = () => {
 
     useEffect(() => {
         const initLine = () => {
-            liff.init({liffId: import.meta.env.VITE_LINE_ID}, async () => {
-                if(!liff.isLoggedIn()) {
+            liff.init({ liffId: import.meta.env.VITE_LINE_ID }, async () => {
+                if (!liff.isLoggedIn()) {
                     navigate('/line-login-page')
                 } else {
                     const profile = liff.getDecodedIDToken();
-                    console.log(profile);
-                    if (profile && profile.email) {
-                        setProfile(profile);
-                    }
+                    setProfile(profile!);
                 }
             })
         }
         initLine()
     }, [navigate])
-    
+
 
     return (
         <div className="container">
             <div className="box">
-                <span>ID: { profile.sub }</span><br />
-                <span>Name: { profile.name }</span><br />
-                <span>Email: { profile.email }</span><br />
+                <span>ID: {profile.sub}</span><br />
+                <span>Name: {profile.name}</span><br />
+                <span>Email: {profile.email}</span><br />
                 <button className="" onClick={logout}>Logout</button>
             </div>
         </div>
